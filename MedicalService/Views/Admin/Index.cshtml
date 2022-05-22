@@ -1,0 +1,60 @@
+﻿@model IEnumerable<MedicalService.Models.User>
+@{
+    ViewBag.Title = "Admin panel";
+}
+
+<link href="../wwwroot/libs/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<h1 class="text-center">Admin's workspace</h1>
+
+<hr>
+<div class="container">
+    <div class="row">
+
+        <div class="col-sm-6 col-md-4">
+            <div class="thumbnail" style="text-align: center">
+                <img src="../pics/UsersList.jpg" alt="..." style="width: 350px; height: 350px">
+                <div class="caption">
+                    <h3 style="text-align: center">Users</h3>
+                    <p>Lorem ipsum dolor sit amet. Eligendi optio, cumque nihil molestiae. Nemo enim ipsam voluptatem, quia. Velit, sed quia dolor sit amet. Voluptate velit esse, quam nihil molestiae consequatur, vel illum.</p>
+                    <p style="text-align: center"><a style="width: -webkit-fill-available" class="btn btn-outline-secondary" role="button" asp-area="" asp-controller="Admin" asp-action="UserList">Open</a></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-6 col-md-4">
+            <div class="thumbnail" style="text-align: center">
+                <img src="../pics/PatientsList.jpg" alt="..." style="width: 350px; height: 350px">
+                <div class="caption">
+                    <h3 style="text-align: center">Patients</h3>
+                    <p>Lorem ipsum dolor sit amet. Eligendi optio, cumque nihil molestiae. Nemo enim ipsam voluptatem, quia. Velit, sed quia dolor sit amet. Voluptate velit esse, quam nihil molestiae consequatur, vel illum.</p>
+                    <p style="text-align: center"><a style="width: -webkit-fill-available" class="btn btn-outline-secondary" role="button" asp-area="" asp-controller="Admin" asp-action="PatientList">Open</a></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-6 col-md-4">
+            <div class="thumbnail" style="text-align: center">
+                <img src="../pics/DoctorsList.jpg" alt="..." style="width: 350px; height: 350px">
+                <div class="caption">
+                    <h3 style="text-align: center">Doctors</h3>
+                    <p>Lorem ipsum dolor sit amet. Eligendi optio, cumque nihil molestiae. Nemo enim ipsam voluptatem, quia. Velit, sed quia dolor sit amet. Voluptate velit esse, quam nihil molestiae consequatur, vel illum.</p>
+                    <p style="text-align: center"><a style="width: -webkit-fill-available" class="btn btn-outline-secondary" role="button" asp-area="" asp-controller="Admin" asp-action="DoctorList">Open</a></p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+ 
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+}
+
+  <!-- jQuery -->
+  <script src="../wwwroot/js/jquery/dist/jquery.min.js"></script>
+  <!-- Bootstrap JS -->
+  <script src="../wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

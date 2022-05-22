@@ -1,0 +1,38 @@
+﻿@model MedicalService.ViewModels.PatientViewModels.EditAddress
+
+<h4>Edit Address</h4>
+<div class="row">
+    <div class="col-md-6">
+        <form form asp-action="EditAddress" asp-controller="Patient">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <input type="hidden" asp-for="Id" />
+            </div>
+             <div class="form-group">
+                <label asp-for="Address.Country"></label>
+                <input asp-for="Address.Country" class="form-control"/>
+            </div>
+            <div class="form-group">
+                <label asp-for="Address.Region">Region</label>
+                <input asp-for="Address.Region" class="form-control"/>
+            </div>
+            <div class="form-group">
+                <label asp-for="Address.City"></label>
+                <input asp-for="Address.City" class="form-control"/>
+            </div>
+            <div class="form-group">
+                <label asp-for="Address.StreetName">Street Name</label>
+                <input asp-for="Address.StreetName" class="form-control"/>
+            </div>
+            <div class="form-group">
+                <label asp-for="Address.HouseNumber">House Number</label>
+                <input asp-for="Address.HouseNumber" class="form-control"/>
+            </div>
+            <div class="form-group">
+                <label asp-for="Address.FlatNumber">Flat Number</label>
+                <input asp-for="Address.FlatNumber" class="form-control"/>
+            </div>
+            <button id="update-profile-button" type="submit" class="btn btn-outline-success">Save</button>
+        </form>
+    </div>
+</div>

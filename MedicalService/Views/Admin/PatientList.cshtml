@@ -1,0 +1,56 @@
+﻿@model MedicalService.ViewModels.AdminViewModels.PatientListViewModel
+ @{
+    ViewData["Title"] = "Patients List";
+}
+<h2>Patients</h2>
+<form method="get" asp-controller="Admin" asp-action="PatientList">
+    <div class="form-inline form-group">
+        
+        <label class="control-label" style="margin: 5px;">Second Name: </label>
+        <input name="secondName" class="form-control" style="margin: 5px;"/>
+
+        <label class="control-label" style="margin: 5px;">First Name: </label>
+        <input name="firstName" class="form-control" style="margin: 5px;"/>
+
+        <label class="control-label" style="margin: 5px;">Date Of Birth: </label>
+        <input name="dateOfBirth" class="form-control" type="date" style="margin: 5px;" />
+
+        <input type="submit" value="Filter" class="btn btn-outline-secondary" style="margin: 5px;" />
+    </div>
+</form>
+<table class="table">
+    <tr>
+        <th>Second Name</th>
+        <th>Middle Name</th>
+        <th>First Name</th>
+        <th>Date of Birth</th>
+        <th>Phone Number</th>
+        <th></th>
+        <th></th>
+    </tr>
+    @if(Model.Patients.Count() == 0)
+    {
+        <tr>
+            <td colspan="7" class="text-center">No data</td>
+        </tr>
+    }
+    else
+    {
+        foreach (var patient in Model.Patients)
+        {
+            <tr>
+                <td>@patient.SecondName</td>
+                <td>@patient.MiddleName</td>
+                <td>@patient.FirstName</td>
+                <td>@patient.DateOfBirth.ToShortDateString()</td>
+                <td>@patient.PhoneNumber</td>
+                <td>
+                    <a style="width: -webkit-fill-available" class="btn btn-outline-success" asp-controller="Event" asp-action="Calendar" asp-route-patientid="@patient.Id">Calendar</a>
+                </td>
+                <td>
+                    <a style="width: -webkit-fill-available" class="btn btn-outline-info" asp-controller="Patient" asp-action="PatientProfileEditable" asp-route-patientid="@patient.Id" class = "compItem">Profile</a>
+                </td>
+            </tr>
+        }
+    }
+</table>

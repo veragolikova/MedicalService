@@ -1,0 +1,60 @@
+﻿@model MedicalService.ViewModels.AdminViewModels.DoctorListViewModel
+@{
+    ViewData["Title"] = "Doctors List";
+}
+<h2>Doctors
+    <a class="btn btn-outline-success" role="button" asp-area="" asp-controller="Doctor" asp-action="Create">Create doctor</a>
+</h2>
+<form method="get" asp-controller="Admin" asp-action="DoctorList">
+    <div class="form-inline form-group">
+        
+        <label class="control-label" style="margin: 5px;">Second Name: </label>
+        <input name="secondName" class="form-control" style="margin: 5px;"/>
+
+        <label class="control-label" style="margin: 5px;">Specialty: </label>
+        <input name="specialty" class="form-control" style="margin: 5px;" />
+
+        <label class="control-label" style="margin: 5px;">Department Number: </label>
+        <input name="departmentNumber" type="number" min="1" max="15" class="form-control" style="margin: 5px;" />
+
+        <input type="submit" value="Filter" class="btn btn-outline-secondary" style="margin: 5px;" />
+    </div>
+</form>
+<table class="table">
+    <tr>
+        <th>Second Name</th>
+        <th>Middle Name</th>
+        <th>First Name</th>
+        <th>Specialty</th>
+        <th>Department Number</th>
+        <th>Phone Number</th>
+        <th></th>
+        <th></th>
+    </tr>
+    @if(Model.Doctors.Count() == 0)
+    {
+        <tr>
+            <td colspan="8" class="text-center">No data</td>
+        </tr>
+    }
+    else
+    {
+        foreach (var doctor in Model.Doctors)
+        {
+            <tr>
+                <td>@doctor.SecondName</td>
+                <td>@doctor.MiddleName</td>
+                <td>@doctor.FirstName</td>
+                <td>@doctor.Specialty</td>
+                <td>@doctor.DepartmentNumber</td>
+                <td>@doctor.PhoneNumber</td>
+                <td>
+                    <a style="width: -webkit-fill-available" class="btn btn-outline-success" asp-controller="Doctor" asp-action="ListOfPatients" asp-route-doctorid="@doctor.Id">List of patients</a>
+                </td>
+                <td>
+                    <a style="width: -webkit-fill-available" class="btn btn-outline-info" asp-controller="Doctor" asp-action="DoctorProfile" asp-route-doctorid="@doctor.Id" class = "compItem">Profile</a>
+                </td>
+            </tr>
+        }
+    }
+</table>

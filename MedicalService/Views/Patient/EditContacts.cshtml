@@ -1,0 +1,23 @@
+﻿@model MedicalService.ViewModels.PatientViewModels.EditContacts
+
+<h4>Edit Contacts</h4>
+<div class="row">
+    <div class="col-md-6">
+        <form form asp-action="EditContacts" asp-controller="Patient">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <input type="hidden" asp-for="Id" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Email">Email</label>
+                <input asp-for="Email" class="form-control"/>    
+                <p>Please remember that the email you provided is used to log into your account. Therefore, if you change it, then the next time you enter the application, you will need to use the new Email as a login.</p>
+            </div>
+            <div class="form-group">
+                <label asp-for="PhoneNumber">Phone Number</label>
+                <input asp-for="PhoneNumber" class="form-control"/>
+            </div>
+            <button id="update-profile-button" type="submit" class="btn btn-outline-success">Save</button>
+        </form>
+    </div>
+</div>

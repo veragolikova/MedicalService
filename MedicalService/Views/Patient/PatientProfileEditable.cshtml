@@ -1,0 +1,145 @@
+﻿@model MedicalService.ViewModels.PatientProfile
+@{
+    ViewData["Title"] = "Profile";
+}
+<link href="../wwwroot/libs/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<div class="container-fluid">
+    <ul class="nav nav-tabs">
+      <li class="nav-item">
+        <a class="nav-link active" data-toggle="tab" href="#general">General</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#address">Address</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#contacts">Contacts</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#doctor">Doctor</a>
+      </li>
+    </ul>
+    <div class="tab-content p-3">
+      <div class="tab-pane fade show active" id="general">
+        <h2 class="h4 mb-3">Personal info</h2>
+        <div class="row">
+        <div class="col-md-6">
+        <form form asp-action="Index" asp-controller="Patient">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Patient.FirstName">First Name</label>
+                    <input asp-for="Patient.FirstName" class="form-control" readonly="readonly"/>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Patient.MiddleName">Middle Name</label>
+                    <input asp-for="Patient.MiddleName" class="form-control" readonly="readonly"/>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Patient.SecondName">Second Name</label>
+                    <input asp-for="Patient.SecondName" class="form-control" readonly="readonly"/>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Patient.DateOfBirth">Date of birth</label>
+                    <input asp-for="Patient.DateOfBirth" class="form-control" type="date" readonly="readonly" />
+                </div>
+                <a class="btn btn-outline-info" asp-area="" asp-controller="Patient" asp-action="EditPersonalInfo" asp-route-patientid="@Model.Id">Edit</a>
+                <a class="btn btn-outline-secondary" href='javascript:history.go(-1)'>Back</a>
+                </form>
+            </div>
+      </div>
+      </div>
+
+      <div class="tab-pane fade" id="address">
+        <h2 class="h4 mb-3">Address</h2>
+            <form form asp-action="Index" asp-controller="Patient">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Patient.Address.Country"></label>
+                <input asp-for="Patient.Address.Country" class="form-control" readonly="readonly"/>
+            </div>
+            <div class="form-group">
+                <label asp-for="Patient.Address.Region">Region</label>
+                <input asp-for="Patient.Address.Region" class="form-control" readonly="readonly"/>
+            </div>
+            <div class="form-group">
+                <label asp-for="Patient.Address.City"></label>
+                <input asp-for="Patient.Address.City" class="form-control" readonly="readonly"/>
+            </div>
+            <div class="form-group">
+                <label asp-for="Patient.Address.StreetName">Street Name</label>
+                <input asp-for="Patient.Address.StreetName" class="form-control" readonly="readonly"/>
+            </div>
+            <div class="form-group">
+                <label asp-for="Patient.Address.HouseNumber">House Number</label>
+                <input asp-for="Patient.Address.HouseNumber" class="form-control" readonly="readonly"/>
+            </div>
+            <div class="form-group">
+                <label asp-for="Patient.Address.FlatNumber">Flat Number</label>
+                <input asp-for="Patient.Address.FlatNumber" class="form-control" readonly="readonly"/>
+            </div>
+            <a class="btn btn-outline-info" asp-area="" asp-controller="Patient" asp-action="EditAddress" asp-route-patientid="@Model.Id">Edit</a>
+            <a class="btn btn-outline-secondary" href='javascript:history.go(-1)'>Back</a>
+            </form>
+      </div>
+      <div class="tab-pane fade" id="contacts">
+        <h2 class="h4 mb-3">Contacts</h2>
+        <form form asp-action="Index" asp-controller="Patient">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+                <label asp-for="UserName">User Name</label>
+                <input asp-for="UserName" class="form-control" readonly="readonly"/>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email">Email</label>
+                <input asp-for="Email" class="form-control" readonly="readonly"/>    
+            </div>
+            <div class="form-group">
+                <label asp-for="Patient.PhoneNumber">Phone Number</label>
+                <input asp-for="Patient.PhoneNumber" class="form-control" readonly="readonly"/>
+            </div>
+            <a class="btn btn-outline-info" asp-area="" asp-controller="Patient" asp-action="EditContacts" asp-route-patientid="@Model.Id">Edit</a>
+            <a class="btn btn-outline-secondary" href='javascript:history.go(-1)'>Back</a>
+            </form>
+            </div>
+      <div class="tab-pane fade" id="doctor">
+        <h2 class="h4 mb-3">Doctor</h2>
+        <form form asp-action="Index" asp-controller="Patient">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Patient.GPDoctor.FirstName">Doctors First Name</label>
+                <input asp-for="Patient.GPDoctor.FirstName" class="form-control" readonly="readonly"/>
+            </div>
+                        <div class="form-group">
+                <label asp-for="Patient.GPDoctor.MiddleName">Doctors Middle Name</label>
+                <input asp-for="Patient.GPDoctor.MiddleName" class="form-control" readonly="readonly"/>
+            </div>
+            <div class="form-group">
+                <label asp-for="Patient.GPDoctor.SecondName">Doctors Second Name</label>
+                <input asp-for="Patient.GPDoctor.SecondName" class="form-control" readonly="readonly"/>
+            </div>
+            <div class="form-group">
+                <label asp-for="Patient.GPDoctor.DepartmentNumber">Department Number</label>
+                <input asp-for="Patient.GPDoctor.DepartmentNumber" class="form-control" readonly="readonly"/>    
+            </div>
+            <div class="form-group">
+                <label asp-for="Patient.GPDoctor.DepartmentName">Department Name</label>
+                <input asp-for="Patient.GPDoctor.DepartmentName" class="form-control" readonly="readonly"/>    
+            </div>
+            <div class="form-group">
+                <label asp-for="Patient.GPDoctor.Specialty">Specialty</label>
+                <input asp-for="Patient.GPDoctor.Specialty" class="form-control" readonly="readonly"/>
+            </div>
+            <a class="btn btn-outline-secondary" href='javascript:history.go(-1)'>Back</a>
+            </form>
+      </div>
+    </div>
+  </div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
+  <!-- jQuery -->
+  <script src="../wwwroot/js/jquery/dist/jquery.min.js"></script>
+  <!-- Bootstrap JS -->
+  <script src="../wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

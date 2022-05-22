@@ -1,0 +1,166 @@
+﻿@model IEnumerable<MedicalService.Models.Event>
+
+@{
+    ViewData["Title"] = "Calendar";
+}
+<script>
+        function addNewEvent()
+    {
+        $('#myModal').modal('hide');
+        $('#myModalSave').modal();
+    };
+    function saveEvent()
+    {
+        var name = $('#myModalSave').find('inpit[name="title"]').val();
+        console.log(name);
+      //Делайте с ним то, что нужно
+    };
+
+</script>
+<button id="btnAddEvent" onclick="addNewEvent()" style="margin:25px; width: -webkit-fill-available" class="btn btn-outline-info">Add New Event</button>
+<div id="calendar"></div>
+
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title"><span id="eventTitle"></span></h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p id="pDetails"></p>
+            </div>
+            <div class="modal-footer">
+                <button id="btnEdit" style="margin-right:5px; width: -webkit-fill-available" class="btn btn-outline-info">Edit</button>
+                <button id="btnDelete" style="width: -webkit-fill-available" class="btn btn-outline-danger">Remove</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="myModalSave" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Create Medicine</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" action="/Home/SaveEvent">
+                    <input type="hidden" name="id" id="id"/>
+                    <div class="form-group">
+                        <label>Title</label>
+                        <input type="text" name="title" id="title" class="form-control" required/>
+                    </div>
+                    <div class="form-group">
+                        <label>Start Date</label>
+                        <div class="input-group date" id="dtp1">
+                            <input type="date"  name="startDate" id="startDate" class="form-control" required/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>End Date</label>
+                        <div class="input-group date" id="dtp1">
+                            <input type="date" name="endDate" id="endDate" class="form-control" required/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Description</label>
+                        <textarea id="description" rows="3" name="description" class="form-control"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Times a day</label>
+                        <input type="number" min="1" max="5" name="timesADay" id="timesADay" class="form-control" required/>
+                    </div>
+                    <div class="modal-footer">
+                        <button style="width: -webkit-fill-available" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
+                        <button id="btnSave" style="margin-right:5px; width: -webkit-fill-available" class="btn btn-outline-success">Save</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.1.0/main.min.css">
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.1.0/main.min.js"></script>
+@*<script language="JavaScript" type="text/javascript" src="../wwwroot/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script language="JavaScript" type="text/javascript" src="/js/jquery-ui-personalized-1.5.2.packed.js"></script>
+<script language="JavaScript" type="text/javascript" src="/js/sprinkle.js"></script>*@
+
+@section Scripts {
+<script>
+    $(document).ready(function () {
+    loadData();
+    //let calendar = initCalendar();
+
+    function loadData() {
+        let eventsArr = [];
+        $.ajax({
+                type: "GET",
+                url: "/home/GetEvents",
+                success: function (data) {
+                    console.log(data);
+                    $.each(data, function (i, v) {
+                        console.log(v);
+                        eventsArr.push({
+                            id: v.id,
+                            title: v.title,
+                            description: v.description,
+                            start: v.startDate,
+                            end: v.endDate//,
+                            //color: v.ThemeColor//,
+                            //allDay : v.IsFullDay
+                        });
+                    })
+                    console.log(eventsArr);
+                    let calendar = initCalendar(eventsArr);
+                },
+                error: function (error) {
+                    alert('failed');
+                }
+            })
+    }
+    function initCalendar(eventsArr) {
+        var calendarEl = document.getElementById('calendar');
+        let calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+        views: {
+            listWeek: { buttonText: 'week' },
+            listDay: { buttonText: 'day' }
+        },
+        headerToolbar: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'dayGridMonth,listWeek,listDay', //listWeek, listMonth
+        },
+        events: eventsArr,
+        eventColor: '#378006',
+        dateClick: function(info) 
+        {
+            //info.dayEl.style.backgroundColor = '#afd2fa';
+            $('#myModal').modal('hide');
+            $('#myModalSave').modal();
+        },
+        eventClick: function(info) 
+        {
+            $('#myModal #eventTitle').text(info.event.title);
+            var $description = $('<div/>');
+            $description.append($('<p/>').html('<b>Start Date: </b>' + info.event.start.toDateString()));
+            if (info.event.end != null) {
+            $description.append($('<p/>').html('<b>End Date: </b>' + info.event.end.toDateString()));
+            }
+            $description.append($('<p/>').html('<b>Description:</b>' + info.event._def.extendedProps.description));
+            $('#myModal #pDetails').empty().html($description);
+ 
+            $('#myModal').modal();
+        }
+        });
+    calendar.render();
+    return calendar;
+    }
+})
+</script>
+}

@@ -1,0 +1,68 @@
+﻿@model MedicalService.ViewModels.PatientProfile
+@{
+    ViewData["Title"] = "Profile";
+}
+
+<div class="row">
+    <div class="col-md-6">
+        <form method="post" asp-controller="Patient" asp-action="Create">
+
+            <h4>Patient Info</h4>
+             <div class="form-group">
+                <label asp-for="Patient.FirstName">First Name</label>
+                <input asp-for="Patient.FirstName" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Patient.MiddleName">Middle Name</label>
+                <input asp-for="Patient.MiddleName" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Patient.SecondName">Second Name</label>
+                <input asp-for="Patient.SecondName" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Patient.DateOfBirth">Date Of Birth</label>
+                <input asp-for="Patient.DateOfBirth" class="form-control" type="date" />
+            </div>
+
+            <h4>Address</h4>
+            <div class="form-group">
+                <label asp-for="Patient.Address.Country">Country</label>
+                <input asp-for="Patient.Address.Country" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Patient.Address.Region">Region</label>
+                <input asp-for="Patient.Address.Region" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Patient.Address.City">City</label>
+                <input asp-for="Patient.Address.City" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Patient.Address.StreetName">Street Name</label>
+                <input asp-for="Patient.Address.StreetName" class="form-control" />
+            </div>
+           <div class="form-group">
+                <label asp-for="Patient.Address.HouseNumber">House Number</label>
+                <input asp-for="Patient.Address.HouseNumber" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Patient.Address.FlatNumber">Flat Number</label>
+                <input asp-for="Patient.Address.FlatNumber" class="form-control"/>
+            </div>
+
+            <h4>Contacts</h4>
+            <div class="form-group">
+                <label asp-for="Patient.PhoneNumber">Phone Number</label>
+                <input asp-for="Patient.PhoneNumber" class="form-control"/>
+            </div>
+            <button id="update-profile-button" type="submit" class="btn btn-outline-success">Create</button>
+            <a class="btn btn-outline-secondary" href='javascript:history.go(-1)'>Back</a>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

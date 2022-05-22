@@ -1,0 +1,41 @@
+﻿@model IEnumerable<MedicalService.Models.Patient>
+ 
+<h2>List of your patients</h2>
+<table class="table">
+    <tr>
+        <th>First Name</th>
+        <th>Middle Name</th>
+        <th>Second Name</th>
+        <th>Date Of Birth</th>
+        <th>Email</th>
+        <th>Phone Number</th>
+        <th></th>
+        <th></th>
+    </tr>
+    @if(Model.Count() == 0)
+    {
+        <tr>
+            <td colspan="8" class="text-center">No data</td>
+        </tr>
+    }
+    else
+    {
+        foreach (var patient in Model)
+        {
+            <tr>
+                <td>@patient.FirstName</td>
+                <td>@patient.MiddleName</td>
+                <td>@patient.SecondName</td>
+                <td data-type="date">@patient.DateOfBirth.Date.ToShortDateString()</td>
+                <td>@patient.Email</td>
+                <td>@patient.PhoneNumber</td>
+                <td>
+                    <a style="width: -webkit-fill-available" class="btn btn-outline-info" asp-controller="Patient" asp-action="OpenPatientProfile" asp-route-patientid="@patient.Id">Patient profile</a>
+                </td>
+                <td>
+                    <a style="width: -webkit-fill-available" class="btn btn-outline-success" asp-controller="Event" asp-action="Calendar" asp-route-patientid="@patient.Id">Patient calendar</a>
+                </td>
+            </tr>
+        }
+    }
+</table>

@@ -1,0 +1,35 @@
+﻿@model MedicalService.ViewModels.CreateUserViewModel
+@{
+    ViewBag.Title = "Create user";
+}
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" asp-controller="Users">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <h4>Create a new user</h4>
+            <hr />
+            <div class="form-group">
+                <label asp-for="Email"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password"></label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ConfirmPassword"></label>
+                <input asp-for="ConfirmPassword" class="form-control" />
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+            </div>
+            <button id="update-profile-button" type="submit" class="btn btn-outline-success">Create</button>
+            <a class="btn btn-outline-secondary" asp-controller="Admin" asp-action="UserList">Back</a>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

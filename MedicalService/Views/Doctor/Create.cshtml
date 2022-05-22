@@ -1,0 +1,70 @@
+﻿@model MedicalService.ViewModels.DoctorViewModels.DoctorProfileViewModel
+@{
+    ViewData["Title"] = "Doctor profile";
+}
+
+<div class="row">
+    <div class="col-md-6">
+        <form method="post" asp-controller="Doctor" asp-action="Create">
+
+            <h4>Personal Information</h4>
+             <div class="form-group">
+                <label asp-for="Doctor.FirstName">First Name</label>
+                <input asp-for="Doctor.FirstName" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Doctor.MiddleName">Middle Name</label>
+                <input asp-for="Doctor.MiddleName" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Doctor.SecondName">Second Name</label>
+                <input asp-for="Doctor.SecondName" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Doctor.DateOfBirth">Date Of Birth</label>
+                <input asp-for="Doctor.DateOfBirth" class="form-control" type="date" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Doctor.DepartmentName">Department Name</label>
+                <input asp-for="Doctor.DepartmentName" class="form-control"/>
+            </div>
+                <div class="form-group">
+                <label asp-for="Doctor.DepartmentNumber">Department Number</label>
+                <input asp-for="Doctor.DepartmentNumber" class="form-control"/>
+            </div>
+                <div class="form-group">
+                <label asp-for="Doctor.Specialty">Specialty</label>
+                <input asp-for="Doctor.Specialty" class="form-control"/>
+            </div>
+
+            <h4>Edit Education And Work Experience</h4>
+            <div class="form-group">
+                <label asp-for="Doctor.University">University</label>
+                <input asp-for="Doctor.University" class="form-control"/>
+
+            </div>
+            <div class="form-group">
+                <label asp-for="Doctor.WorkExperience">Work Experience (years)</label>
+                <input asp-for="Doctor.WorkExperience" class="form-control"/>
+            </div>
+
+            <h4>Contacts</h4>
+            <div class="form-group">
+                <label asp-for="Doctor.PhoneNumber">Phone Number</label>
+                <input asp-for="Doctor.PhoneNumber" class="form-control"/>
+            </div>
+            <div class="form-group">
+                <label asp-for="Doctor.Email">Email</label>
+                <input asp-for="Doctor.Email" class="form-control"/>    
+            </div>
+            <button id="update-profile-button" type="submit" class="btn btn-outline-success">Create</button>
+            <a class="btn btn-outline-secondary" href='javascript:history.go(-1)'>Back</a>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
